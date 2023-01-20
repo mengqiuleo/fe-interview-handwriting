@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li><a onclick="location.href='#/'">11111</a></li>
+        <li><a href="#/admin">22222222</a></li>
+        <li><a onclick="location.href='#/server'">333333333</a></li>
+    </ul>
+    <div id="div">展示</div>
+ 
+    <script type="text/javascript">
+ 
+        function Router(){
+            this.routes={}
+            this.curUrl=''
+ 
+            //添加回调函数
+            this.route=function(path,callback){
+                this.routes[path]=callback||function(){}
+            }
+            //执行回调函数
+            this.refresh=function(){
+                //获取url
+                this.curUrl=location.hash.slice(1)||'/'
+                this.routes[this.curUrl]()
+            }
+            //监听load和hashchange
+            this.init=function(){
+                window.addEventListener('load',this.refresh.bind(this),false)
+                window.addEventListener('hashchange',this.refresh.bind(this),false)
+            }
+        }
+ 
+        let res=document.getElementById('div')
+        let R=new Router()
+        //触发监听
+        R.init()
+        R.route('/',function(){
+            res.style.backgroundColor='pink'
+            res.innerHTML='11111'
+        })
+        R.route('/admin',function(){
+            res.style.backgroundColor='blue'
+            res.innerHTML='22222'
+        })
+        R.route('/server',function(){
+            res.style.backgroundColor='pink'
+            res.innerHTML='333333'
+        })
+    </script>
+</body>
+</html>

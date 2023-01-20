@@ -1,3 +1,8 @@
+/*
+ * @Author: Pan Jingyi
+ * @Date: 2023-01-20 01:49:20
+ * @LastEditTime: 2023-01-20 01:49:25
+ */
 //封装操作localStorage本地存储的方法
 
 var storage = {
