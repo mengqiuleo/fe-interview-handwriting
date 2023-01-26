@@ -1,41 +1,60 @@
 <!--
  * @Author: Pan Jingyi
  * @Date: 2023-01-18 01:28:26
- * @LastEditTime: 2023-01-18 01:39:51
+ * @LastEditTime: 2023-01-27 00:08:12
 -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      const getData = async (num) => {
-        return await new Promise((resolve) => {
-          setTimeout(() => {
-            resolve(num);
-          }, num);
-        });
-      };
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+//     let arr = [
+//   {
+//       id: 1,
+//       text: '节点1',
+//       parentId: 0 //这里用0表示为顶级节点
+//   },
+//   {
+//       id: 2,
+//       text: '节点1_1',
+//       parentId: 1 //通过这个字段来确定子父级
+//   }
+// ]
 
-      //并发执行异步事件，按顺序输出结果,总耗时为数组中最大的数
-      const order = async (nums) => {
-        const promises = nums.map(async (num) => {
-          return await getData(num);
-        });
-        for (const promise of promises) {
-          // console.log('每一个promise：', promise)
-          console.log(await promise);
-        }
-        console.log(new Date());
-      };
+let arr = [
+    { id: 1, name: '部门1', pid: 0 },
+    { id: 2, name: '部门2', pid: 1 },
+    { id: 3, name: '部门3', pid: 1 },
+    { id: 4, name: '部门4', pid: 3 },
+    { id: 5, name: '部门5', pid: 4 },
+    { id: 6, name: '部门6', pid: 0 },
+]
 
-      const nums = [3000, 2000, 1000, 5000, 5000];
-      console.log(new Date());
-      order(nums);
-    </script>
-  </body>
+
+function listToTree(arr){
+  let res = [], temp = []
+  arr.forEach(item => {
+    temp[item.id] = item
+  })
+  temp.forEach(item => {
+    if(item.pid !== 0){
+      if(!temp[item.pid].children){
+        temp[item.pid].children = []
+      }
+      temp[item.pid].children.push(item)
+    } else {
+      res.push(item)
+    }
+  })
+  return res
+}
+
+console.log(listToTree(arr))
+  </script>
+</body>
 </html>

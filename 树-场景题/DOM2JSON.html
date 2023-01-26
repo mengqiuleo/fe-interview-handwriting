@@ -1,0 +1,43 @@
+<!--
+ * @Author: Pan Jingyi
+ * @Date: 2023-01-26 20:12:10
+ * @LastEditTime: 2023-01-26 20:18:05
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="box">
+    <p class="p">hello world</p>
+    <div class="person">
+      <span class="name">DOM2JSON</span>
+      <span class="age">100</span>
+    </div>
+  </div>
+
+  <script>
+    function DOM2JSON(domTree){
+      if(!domTree) return;
+      let rootObj = {
+        tagName: domTree.tagName,
+        children: []
+      }
+
+      const children = domTree.children
+      if(children){
+        Array.from(children).forEach((element, i) => {
+          rootObj.children[i] = DOM2JSON(element)
+        })
+      }
+      return rootObj
+    }
+
+    console.log(DOM2JSON(document.querySelector('.box')))
+  </script>
+</body>
+</html>
