@@ -1,0 +1,55 @@
+<!--
+ * @Author: Pan Jingyi
+ * @Date: 2022-11-11 00:19:00
+ * @LastEditTime: 2023-01-31 22:05:09
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>九宫格布局-flex</title>
+  <style>
+    .container {
+      height: 500px;
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+    .wrapper1 {
+      display: flex;
+      justify-content: space-between;
+    }
+    .wrapper3 {
+      display: flex;
+      justify-content: space-between;
+    }
+    .wrapper2 {
+      display: flex;
+      justify-content: center;
+    }
+    .item {
+      height: 100px;
+      width: 100px;
+      background-color: aqua;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="wrapper1">
+      <div class="item">1</div>
+      <div class="item">2</div>
+    </div>
+    <div class="wrapper2">
+      <div class="item">3</div>
+    </div>
+    <div class="wrapper3">
+      <div class="item">4</div>
+      <div class="item">5</div>
+    </div>
+  </div>
+</body>
+</html>
