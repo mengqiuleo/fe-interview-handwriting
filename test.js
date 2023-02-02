@@ -1,14 +1,14 @@
-/*
- * @Author: Pan Jingyi
- * @Date: 2023-01-15 20:01:37
- * @LastEditTime: 2023-01-27 00:58:25
- */
-const obj = {
-  a: {
-    b: {
-      c: [Object],
-      f: 3
-    },
-    j: 4
-  }
-}
+const intersectionObserver = new IntersectionObserver(function(entries){
+  if(entries[0].intersectionRatio <= 0) return; //<=0 说明完全不可见
+  console.log('已经进入可视区域内')
+  console.log('Loaded new items')
+})
+
+//开始观察
+intersectionObserver.observe(document.getElementById('example'))
+
+//停止观察
+intersectionObserver.unobserve(element)
+
+//关闭观察器
+intersectionObserver.disconnect()
